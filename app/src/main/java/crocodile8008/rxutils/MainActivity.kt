@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     private fun runJointObservable10times() {
         val joint1 = JointObservableSimple.create { longRunningWork() }
         val requestTimes = 10
-        for (i in 1..requestTimes) {
+        repeat(requestTimes) {
             joint1
                 .getObservable()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     private fun runJointSingle10times() {
         val joint2 = JointSingleSimple.notCached { longRunningWork().firstOrError() }
         val requestTimes = 10
-        for (i in 1..requestTimes) {
+        repeat(requestTimes) {
             joint2
                 .getSingle()
                 .observeOn(AndroidSchedulers.mainThread())
