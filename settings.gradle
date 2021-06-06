@@ -1,0 +1,3 @@
+include ':rxutils'
+include ':app'
+rootProject.name = "RxUtils"
