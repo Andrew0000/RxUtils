@@ -11,7 +11,7 @@ val joint = JointObservableSimple.create {
 }
 
 // We can invoke joint many times but underlying work won't be duplicated
-for (i in 1..10) {
+repeat(10) {
     joint
         .getObservable()
         .subscribe { result ->
