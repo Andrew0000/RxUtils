@@ -5,14 +5,14 @@ It may be helpful for reduce network traffic or another heavy or long-running wo
 
 Example:  
 ```
-val joint1 = JointObservableSimple.create { 
-    // This will invoke only 1 time
+val joint = JointObservableSimple.create { 
+    // This work will invoke only 1 time
     longRunningWork() 
 }
 
 // We can invoke joint many times but underlying work won't be duplicated
 for (i in 1..10) {
-    joint1
+    joint
         .getObservable()
         .subscribe { result ->
             // Handle result
