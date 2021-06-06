@@ -6,7 +6,7 @@ It may be helpful for reduce network traffic or another heavy or long-running wo
 Example:  
 ```
 val joint = JointObservableSimple.create { 
-    // This work will invoke only 1 time
+    // This work will be invoked only 1 time
     longRunningWork() 
 }
 
