@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
                     textView1.text = "Work #1 running: $result times"
                     progress1.visibility = View.INVISIBLE
                 }
+                //TODO Handle disposable
         }
     }
 
@@ -60,6 +61,7 @@ class MainActivity : AppCompatActivity() {
                     textView2.text = "Work #2 running: $result times"
                     progress2.visibility = View.INVISIBLE
                 }
+                //TODO Handle disposable
         }
     }
 
