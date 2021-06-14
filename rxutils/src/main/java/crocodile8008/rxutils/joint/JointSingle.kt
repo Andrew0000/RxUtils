@@ -31,7 +31,7 @@ class JointSingle<K, V : Any>(
                         return@defer existing
                     }
 
-                    val newShared = work(key)
+                    val newRequest = work(key)
                         .observeOn(workObservationScheduler)
                         .doOnSuccess {
                             cache[key] = it
@@ -44,9 +44,9 @@ class JointSingle<K, V : Any>(
                         .replay(1)
                         .refCount()
 
-                    requests[key] = newShared
+                    requests[key] = newRequest
                     log("new", key)
-                    return@defer newShared
+                    return@defer newRequest
                 }
             }
             .firstOrError()

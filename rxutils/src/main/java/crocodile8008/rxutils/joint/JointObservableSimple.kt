@@ -4,7 +4,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-@Suppress( "UNUSED")
+@Suppress("UNUSED")
 class JointObservableSimple<V : Any>(
     private val joint: JointObservable<Unit, V>
 ) {

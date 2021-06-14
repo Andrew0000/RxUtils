@@ -22,6 +22,14 @@ class JointObservableTest {
     }
 
     @Test
+    fun `No subscriptions to request - no work started`() {
+        val request = simpleRequest()
+        request.getObservable("1")
+        scheduler.triggerActions()
+        assertEquals(0, workCounter)
+    }
+
+    @Test
     fun `Requested at first time - work started`() {
         val request = simpleRequest()
         request.getObservable("1").subscribe()
@@ -233,7 +241,7 @@ class JointObservableTest {
     }
 
     @Test
-    fun `Check dispose 1`() {
+    fun `Requested 3 times with 1 key and 1 time with another and dispose 1 - Receive 2 results`() {
         val request = longRunningRequest()
 
         var result1: Any? = null
@@ -250,12 +258,14 @@ class JointObservableTest {
 
         assertEquals(2, workCounter)
         assertNull(result1)
+        assertNotNull(result2)
+        assertNotNull(result3)
         assertEquals(result2, result4)
         assertNotEquals(result1, result3)
     }
 
     @Test
-    fun `Check dispose 2`() {
+    fun `Requested 3 times with 1 key and 1 time with another and dispose 2 times - Receive 2 results`() {
         val request = longRunningRequest()
 
         var result1: Any? = null
@@ -279,7 +289,7 @@ class JointObservableTest {
     }
 
     @Test
-    fun `Check dispose 3`() {
+    fun `Requested 3 times with 1 key and 1 time with another and dispose 2 times and request 1 more time - Receive 2 results`() {
         val request = longRunningRequest()
 
         var result1: Any? = null
@@ -301,6 +311,7 @@ class JointObservableTest {
         assertNull(result1)
         assertNull(result3)
         assertNotNull(result2)
+        assertNotNull(result5)
         assertEquals(result2, result4)
         assertNotEquals(result2, result5)
     }

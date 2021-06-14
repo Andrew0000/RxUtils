@@ -22,6 +22,14 @@ class JointSingleTest {
     }
 
     @Test
+    fun `No subscriptions to request - no work started`() {
+        val request = createRequest()
+        request.getSingle("1")
+        scheduler.triggerActions()
+        assertEquals(0, workCounter)
+    }
+
+    @Test
     fun `Requested first time - work started`() {
         val request = createRequest()
         request.getSingle("1").subscribe()

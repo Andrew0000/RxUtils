@@ -19,6 +19,14 @@ class JointSingleSimpleTest {
     }
 
     @Test
+    fun `No subscriptions to request - no work started`() {
+        val request = createCached()
+        request.getSingle()
+        scheduler.triggerActions()
+        assertEquals(0, workCounter)
+    }
+
+    @Test
     fun `Requested first time cached - work started`() {
         val request = createCached()
         request.getSingle().subscribe()
