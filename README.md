@@ -38,6 +38,6 @@ Tests:
 [**Tests package**](rxutils/src/test/java/crocodile8008/rxutils/joint/)  
 
 Some other functions:  
-[**observeWhenAttached for View**](rxutils/src/test/java/crocodile8008/rxutils/android/RxAndroidUtils.kt)    
-[**observeWhenStarted for LifecycleOwner**](rxutils/src/test/java/crocodile8008/rxutils/android/RxAndroidUtils.kt)  
-[**withRetrying**](rxutils/src/test/java/crocodile8008/rxutils/RxCommonUtils.kt)  
+[**observeWhenAttached for View**](rxutils/src/main/java/crocodile8008/rxutils/android/RxAndroidUtils.kt)    
+[**observeWhenStarted for LifecycleOwner**](rxutils/src/main/java/crocodile8008/rxutils/android/RxAndroidUtils.kt)  
+[**withRetrying**](rxutils/src/main/java/crocodile8008/rxutils/RxCommonUtils.kt)  
