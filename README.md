@@ -1,6 +1,8 @@
 # Rx utils
 
-Helpers for reusing ongoing Observable/Single work without duplication.  
+Helpers for RxJava. 
+
+For example: reusing ongoing Observable/Single work without duplication.  
 It may be helpful for reduce network traffic or another heavy or long-running work.   
 It also supports requests keys and can be managed easier than ConnectableObservable.  
 
