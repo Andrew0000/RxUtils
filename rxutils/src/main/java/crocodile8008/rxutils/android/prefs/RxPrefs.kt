@@ -43,7 +43,8 @@ fun SharedPreferences.rxStringSet(
 
 fun <T: Any> SharedPreferences.createObserver(
     key: String,
-    // Note: OnSharedPreferenceChangeListener ignores edit().clear() so we need a signal to react on it
+    // Note: OnSharedPreferenceChangeListener ignores edit().clear()
+    // on API < 30 so we need a signal to react on it.
     clearSignal: Observable<Unit>? = null,
     retriever: () -> T,
 ): Observable<T> {
