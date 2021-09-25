@@ -6,31 +6,54 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import crocodile8008.rxutils.android.observeWhenStarted
 import crocodile8008.rxutils.joint.JointObservableSimple
 import crocodile8008.rxutils.joint.JointSingleSimple
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var textView1: TextView
     private lateinit var textView2: TextView
+    private lateinit var textView3: TextView
     private lateinit var progress1: ProgressBar
     private lateinit var progress2: ProgressBar
+
+    private val prefs by lazy { PreferencesRepository(applicationContext) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         textView1 = findViewById(R.id.textView1)
         textView2 = findViewById(R.id.textView2)
+        textView3 = findViewById(R.id.textView3)
         progress1 = findViewById(R.id.progress1)
         progress2 = findViewById(R.id.progress2)
 
         runJointObservable10times()
 
         runJointSingle10times()
+
+        prefsSample()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun prefsSample() {
+        prefs.someString.stream.observeWhenStarted(this) {
+            textView3.text = "prefs value: $it"
+        }
+        Observable.interval(1, TimeUnit.SECONDS, Schedulers.io())
+            .observeWhenStarted(this) {
+                if (it % 5L == 0L) {
+                    prefs.clearAll()
+                } else {
+                    prefs.someString.value = it.toString()
+                }
+            }
     }
 
     @SuppressLint("SetTextI18n")

@@ -47,6 +47,19 @@
         android:paddingEnd="16sp"
         app:layout_constraintTop_toBottomOf="@id/progress2"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:paddingStart="16sp"
+        android:paddingEnd="16sp"
+        android:paddingTop="16sp"
+        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"  />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
