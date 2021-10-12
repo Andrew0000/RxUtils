@@ -7,7 +7,6 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import java.util.concurrent.TimeUnit
 
-
 fun <T : Any> Completable.withRetrying(
     tryCnt: Int,
     intervalMillis: (tryCnt: Int) -> Long,
