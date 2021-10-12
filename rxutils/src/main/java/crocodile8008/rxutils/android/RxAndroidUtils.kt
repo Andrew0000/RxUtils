@@ -81,6 +81,7 @@ fun <T : Any> Observable<T>.observeWhenStarted(
         @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
         fun onStop() {
             disposable?.dispose()
+            disposable = null
         }
 
         @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
