@@ -2,7 +2,9 @@
 
 package crocodile8008.rxutils
 
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import java.util.concurrent.TimeUnit
 
@@ -29,6 +31,25 @@ fun <T : Any> Observable<T>.doOnNextOnce(action: () -> Unit): Observable<T> {
         }
     }
 }
+
+fun <T : Any> Completable.withRetrying(
+    tryCnt: Int,
+    intervalMillis: (tryCnt: Int) -> Long,
+    retryCheck: (Throwable) -> Boolean = { true }
+): Completable = this
+    .toObservable<Any>()
+    .withRetrying(null, tryCnt, intervalMillis, retryCheck)
+    .ignoreElements()
+
+fun <T : Any> Single<T>.withRetrying(
+    fallbackValue: T?,
+    tryCnt: Int,
+    intervalMillis: (tryCnt: Int) -> Long,
+    retryCheck: (Throwable) -> Boolean = { true }
+): Single<T> = this
+    .toObservable()
+    .withRetrying(fallbackValue, tryCnt, intervalMillis, retryCheck)
+    .firstOrError()
 
 fun <T : Any> Observable<T>.withRetrying(
     fallbackValue: T?,
