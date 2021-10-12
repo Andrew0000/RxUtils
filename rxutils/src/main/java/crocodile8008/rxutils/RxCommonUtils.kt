@@ -32,20 +32,20 @@ fun <T : Any> Observable<T>.doOnNextOnce(action: () -> Unit): Observable<T> {
 
 fun <T : Any> Observable<T>.withRetrying(
     fallbackValue: T?,
-    retryCnt: Int,
+    tryCnt: Int,
     intervalMillis: (tryCnt: Int) -> Long,
     retryCheck: (Throwable) -> Boolean = { true }
 ): Observable<T> {
-    if (retryCnt <= 0) {
+    if (tryCnt <= 0) {
         return this
     }
     return this
         .retryWhen { errors ->
             errors
                 .zipWith(
-                    Observable.range(1, retryCnt),
+                    Observable.range(1, tryCnt),
                     { th: Throwable, attempt: Int ->
-                        if (retryCheck(th) && attempt < retryCnt) {
+                        if (retryCheck(th) && attempt < tryCnt) {
                             Observable.timer(intervalMillis(attempt), TimeUnit.MILLISECONDS)
                         } else {
                             Observable.error(th)

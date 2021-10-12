@@ -18,83 +18,83 @@ class WithRetryingTest {
 
     @Test
     fun `When error 2 times and retry 3 times - Then got success value`() {
-        createStreamWithErrorsAndRetrying(errorsCount = 2, retryCnt = 3)
+        createStreamWithErrorsAndRetrying(errorsCount = 2, tryCnt = 3)
             .test()
             .assertValue(successValue)
     }
 
     @Test
     fun `When error 1 times and retry 2 times - Then got success value`() {
-        createStreamWithErrorsAndRetrying(errorsCount = 1, retryCnt = 2)
+        createStreamWithErrorsAndRetrying(errorsCount = 1, tryCnt = 2)
             .test()
             .assertValue(successValue)
     }
 
     @Test
     fun `When error 3 times and retry 4 times - Then got success value`() {
-        createStreamWithErrorsAndRetrying(errorsCount = 3, retryCnt = 4)
+        createStreamWithErrorsAndRetrying(errorsCount = 3, tryCnt = 4)
             .test()
             .assertValue(successValue)
     }
 
     @Test
     fun `When no errors and retry 5 times - Then got success value`() {
-        createStreamWithErrorsAndRetrying(errorsCount = 0, retryCnt = 5)
+        createStreamWithErrorsAndRetrying(errorsCount = 0, tryCnt = 5)
             .test()
             .assertValue(successValue)
     }
 
     @Test
     fun `When error 3 times and retry 3 times - Then got fallback value`() {
-        createStreamWithErrorsAndRetrying(errorsCount = 3, retryCnt = 3)
+        createStreamWithErrorsAndRetrying(errorsCount = 3, tryCnt = 3)
             .test()
             .assertValue(fallbackValueDefault)
     }
 
     @Test
     fun `When error 3 times and retry 1 times - Then got fallback value`() {
-        createStreamWithErrorsAndRetrying(errorsCount = 3, retryCnt = 1)
+        createStreamWithErrorsAndRetrying(errorsCount = 3, tryCnt = 1)
             .test()
             .assertValue(fallbackValueDefault)
     }
 
     @Test
     fun `When error 3 times and retry 3 times without fallback - Then got error`() {
-        createStreamWithErrorsAndRetrying(errorsCount = 3, retryCnt = 3, fallbackValue = null)
+        createStreamWithErrorsAndRetrying(errorsCount = 3, tryCnt = 3, fallbackValue = null)
             .test()
             .assertError(error)
     }
 
     @Test
     fun `When error 3 times and retry 1 times without fallback - Then got error`() {
-        createStreamWithErrorsAndRetrying(errorsCount = 3, retryCnt = 1, fallbackValue = null)
+        createStreamWithErrorsAndRetrying(errorsCount = 3, tryCnt = 1, fallbackValue = null)
             .test()
             .assertError(error)
     }
 
     @Test
     fun `When error 3 times and retry 0 times - Then got error`() {
-        createStreamWithErrorsAndRetrying(errorsCount = 3, retryCnt = 0)
+        createStreamWithErrorsAndRetrying(errorsCount = 3, tryCnt = 0)
             .test()
             .assertError(error)
     }
 
     @Test
     fun `When error 3 times and retry 0 times without fallback - Then got error`() {
-        createStreamWithErrorsAndRetrying(errorsCount = 3, retryCnt = 0, fallbackValue = null)
+        createStreamWithErrorsAndRetrying(errorsCount = 3, tryCnt = 0, fallbackValue = null)
             .test()
             .assertError(error)
     }
 
     private fun createStreamWithErrorsAndRetrying(
         errorsCount: Int,
-        retryCnt: Int,
+        tryCnt: Int,
         fallbackValue: Int? = fallbackValueDefault
     ): Observable<Int> {
         return createObservableWithErrorsAtFirst(errorsCount = errorsCount)
             .withRetrying(
                 fallbackValue = fallbackValue,
-                retryCnt = retryCnt,
+                tryCnt = tryCnt,
                 intervalMillis = { 0L },
             )
     }
