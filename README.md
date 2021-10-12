@@ -40,4 +40,4 @@ Some other functions:
 [**withRetrying**](rxutils/src/main/java/crocodile8008/rxutils/Retrying.kt)  
 
 Tests:  
-[**Tests package**](rxutils/src/test/java/crocodile8008/rxutils/joint/)  
+[**Tests package**](rxutils/src/test/java/crocodile8008/rxutils/)  
