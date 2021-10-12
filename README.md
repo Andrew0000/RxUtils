@@ -34,10 +34,10 @@ Single:
 Sample:  
 [**MainActivity**](app/src/main/java/crocodile8008/rxutils/MainActivity.kt)  
 
-Tests:  
-[**Tests package**](rxutils/src/test/java/crocodile8008/rxutils/joint/)  
-
 Some other functions:  
 [**observeWhenAttached for View**](rxutils/src/main/java/crocodile8008/rxutils/android/RxAndroidUtils.kt)    
 [**observeWhenStarted for LifecycleOwner**](rxutils/src/main/java/crocodile8008/rxutils/android/RxAndroidUtils.kt)  
-[**withRetrying**](rxutils/src/main/java/crocodile8008/rxutils/RxCommonUtils.kt)  
+[**withRetrying**](rxutils/src/main/java/crocodile8008/rxutils/Retrying.kt)  
+
+Tests:  
+[**Tests package**](rxutils/src/test/java/crocodile8008/rxutils/joint/)  
