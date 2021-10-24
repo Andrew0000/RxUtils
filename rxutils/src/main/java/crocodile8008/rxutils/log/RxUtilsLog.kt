@@ -6,12 +6,12 @@ object RxUtilsLog {
 
     var target = RxUtilsLogTarget.EMPTY
 
-    private val tag = "RxUtilsLog"
+    private const val TAG = "RxUtilsLog"
 
     fun d(msg: String) {
         when (target) {
             RxUtilsLogTarget.CONSOLE -> println(msg)
-            RxUtilsLogTarget.ANDROID_LOG -> Log.d(tag, msg)
+            RxUtilsLogTarget.ANDROID_LOG -> Log.d(TAG, msg)
             else -> { /* Empty */ }
         }
     }
@@ -23,7 +23,7 @@ object RxUtilsLog {
                 throwable.printStackTrace()
             }
             RxUtilsLogTarget.ANDROID_LOG -> {
-                Log.e(tag, msg, throwable)
+                Log.e(TAG, msg, throwable)
             }
             else -> { /* Empty */ }
         }
