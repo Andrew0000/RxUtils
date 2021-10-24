@@ -6,8 +6,8 @@ Some functions:
 🔹 Retrying with delay.  
 🔹 Rx Preferences.  
 🔹 RxValue / RxValueMutable like LiveData.  
-🔹 observeWhenStarted() / observeUntilDetach() functions for LifecycleOwner and View.  
 🔹 ConsumableStream.   
+🔹 observeWhenStarted() / observeUntilDetach() functions for LifecycleOwner and View.  
 🔹 fromIoToMain() and other scheduling extensions.  
 
 # Setup:  
