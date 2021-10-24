@@ -75,10 +75,11 @@ Retries stream on errors with given interval:
 ```
 someStreamThatCanFail.withRetrying(
     fallbackValue = fallbackValue,
-    tryCnt = tryCnt,
-    intervalMillis = { tryNum -> tryNum * 2L },
+    tryCnt = 3,
+    intervalMillis = { tryNum -> tryNum * 2000L },
 )
 ```
+It will retry 2 more times after first fail with 2 sec. delay for first retry and 4 sec. for second.
 
 ### RxPrefs
 Rx preferences:  
