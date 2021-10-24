@@ -3,9 +3,9 @@ package crocodile8008.rxutils.android
 import android.os.Handler
 import android.os.Looper
 
-internal val mainHandler by lazy { Handler(Looper.getMainLooper()) }
+val mainHandler by lazy { Handler(Looper.getMainLooper()) }
 
-internal fun runOnMainThread(action: () -> Unit) {
+fun runOnMainThread(action: () -> Unit) {
     if (isMainThread()) {
         action()
     } else {
@@ -13,5 +13,5 @@ internal fun runOnMainThread(action: () -> Unit) {
     }
 }
 
-internal fun isMainThread() =
+fun isMainThread() =
     Looper.myLooper() == Looper.getMainLooper()
