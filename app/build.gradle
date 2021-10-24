@@ -30,11 +30,18 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    flavorDimensions "libDep"
+    productFlavors {
+        libDepLocal { dimension "libDep" }
+        libDepJitpack { dimension "libDep" }
+    }
 }
 
 dependencies {
 
-    implementation project(":rxutils")
+    libDepLocalImplementation project(":rxutils")
+    libDepJitpackImplementation 'com.github.Andrew0000:RxUtils:1.+'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'

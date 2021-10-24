@@ -1,3 +1,5 @@
 include ':rxutils'
-include ':app'
+if (!System.env.JITPACK) {
+    include ':app'
+}
 rootProject.name = "RxUtils"
