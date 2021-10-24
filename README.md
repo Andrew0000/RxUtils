@@ -1,6 +1,31 @@
 # Rx utils
 
+🔹 Sharing / caching ongoing streams by key.  
+🔹 Retrying with delay.  
+🔹 Rx Preferences.  
+🔹 RxValue / RxValueMutable like LiveData.  
+🔹 observeWhenStarted() / observeUntilDetach() functions for LifecycleOwner and View.  
+
+# Setup:  
+
 [![](https://jitpack.io/v/Andrew0000/RxUtils.svg)](https://jitpack.io/#Andrew0000/RxUtils)
+
+1. Add `maven { url 'https://jitpack.io' }` to the `allprojects` or `dependencyResolutionManagement` section in top-leve `build.gradle` or `settings.gradle`.  
+For example (`settings.gradle`):
+```
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+2. Add `implementation 'com.github.Andrew0000:RxUtils:$latest_version'` to the module-level `build.gradle`  
+
+# Usage:
 
 Helpers for RxJava. 
 
