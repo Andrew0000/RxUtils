@@ -1,5 +1,7 @@
 # Rx utils
 
+[![](https://jitpack.io/v/Andrew0000/RxUtils.svg)](https://jitpack.io/#Andrew0000/RxUtils)
+
 Helpers for RxJava. 
 
 For example: reusing ongoing Observable/Single work without duplication.  
@@ -41,3 +43,4 @@ Some other functions:
 
 Tests:  
 [**Tests package**](rxutils/src/test/java/crocodile8008/rxutils/)  
+
