@@ -7,6 +7,8 @@ Some functions:
 🔹 Rx Preferences.  
 🔹 RxValue / RxValueMutable like LiveData.  
 🔹 observeWhenStarted() / observeUntilDetach() functions for LifecycleOwner and View.  
+🔹 ConsumableStream.   
+🔹 fromIoToMain() and other scheduling extensions.  
 
 # Setup:  
 
