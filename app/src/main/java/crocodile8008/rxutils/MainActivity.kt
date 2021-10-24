@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import crocodile8008.rxutils.android.observeWhenStarted
 import crocodile8008.rxutils.joint.JointObservableSimple
 import crocodile8008.rxutils.joint.JointSingleSimple
+import crocodile8008.rxutils.log.RxUtilsLog
+import crocodile8008.rxutils.log.RxUtilsLogTarget
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -33,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         textView3 = findViewById(R.id.textView3)
         progress1 = findViewById(R.id.progress1)
         progress2 = findViewById(R.id.progress2)
+
+        if (BuildConfig.DEBUG) {
+            RxUtilsLog.target = RxUtilsLogTarget.ANDROID_LOG
+        }
 
         runJointObservable10times()
 
