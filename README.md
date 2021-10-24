@@ -1,4 +1,6 @@
-# Rx utils
+# Rx utils  
+
+Some functions:  
 
 🔹 Sharing / caching ongoing streams by key.  
 🔹 Retrying with delay.  
@@ -25,13 +27,12 @@ dependencyResolutionManagement {
 ```
 2. Add `implementation 'com.github.Andrew0000:RxUtils:$latest_version'` to the module-level `build.gradle`  
 
-# Usage:
+# Some examples:
 
-Helpers for RxJava. 
-
-For example: reusing ongoing Observable/Single work without duplication.  
+### JointObservable  
+Reusing ongoing Observable/Single work without duplication.  
 It may be helpful for reduce network traffic or another heavy or long-running work.   
-It also supports requests keys and can be managed easier than ConnectableObservable.  
+It also supports request keys and can be managed easier than ConnectableObservable.  
 
 Example:  
 ```
@@ -49,23 +50,56 @@ repeat(10) {
         }
 }
 ```
+It has some modifications: JointObservable, JointObservableSimple, JointSingle, JointSingleSimple.  
 
-Observable:  
-[**JointObservable**](rxutils/src/main/java/crocodile8008/rxutils/joint/JointObservable.kt) 
-and [**JointObservableSimple**](rxutils/src/main/java/crocodile8008/rxutils/joint/JointObservableSimple.kt)  
+### observeWhenStarted()  
+Lifecycle-aware subscription like with LiveData or some coroutines extensions based on LifecycleOwner.  
+Example for activity of fragment:  
+```
+someObservable.observeWhenStarted(this) { newValue ->
+    // handle newValue
+}
+```
 
-Single:  
-[**JointSingle**](rxutils/src/main/java/crocodile8008/rxutils/joint/JointSingle.kt) and 
-[**JointSingleSimple**](rxutils/src/main/java/crocodile8008/rxutils/joint/JointSingleSimple.kt)  
-  
-Sample:  
-[**MainActivity**](app/src/main/java/crocodile8008/rxutils/MainActivity.kt)  
+### observeWhenAttached()  
+Lifecycle-aware subscription for View based on onViewAttachedToWindow / onViewDetachedFromWindow callbacks.  
+Example for View:  
+```
+someObservable.observeWhenAttached(someView) { newValue ->
+    // handle newValue
+}
+```
 
-Some other functions:  
-[**observeWhenAttached for View**](rxutils/src/main/java/crocodile8008/rxutils/android/RxAndroidUtils.kt)    
-[**observeWhenStarted for LifecycleOwner**](rxutils/src/main/java/crocodile8008/rxutils/android/RxAndroidUtils.kt)  
-[**withRetrying**](rxutils/src/main/java/crocodile8008/rxutils/Retrying.kt)  
+### withRetrying()
+Retries stream on errors with given interval:  
+```
+someStreamThatCanFail.withRetrying(
+    fallbackValue = fallbackValue,
+    tryCnt = tryCnt,
+    intervalMillis = { tryNum -> tryNum * 2L },
+)
+```
 
-Tests:  
-[**Tests package**](rxutils/src/test/java/crocodile8008/rxutils/)  
+### RxPrefs
+Rx preferences:  
+```
+class PreferencesRepository(context: Context) {
 
+    private val prefs = context.getSharedPreferences("your_prefs_name", Context.MODE_PRIVATE)
+    private val clearSignal = PublishSubject.create<Unit>()
+
+    val rxPrefString = prefs.rxString("some_string", clearSignal = clearSignal)
+
+    fun clearAll() {
+        prefs.edit().clear().apply()
+        clearSignal.onNext(Unit)
+    }
+}
+```
+Note: clear signal is needed if you want to clear you prefs with `prefs.edit().clear()` function.  
+Because OnSharedPreferenceChangeListener ignores edit().clear() on API < 30 so we need a signal to react on it.  
+If you clena you prefs individually than you can skip clearSignal.  
+Like that:
+```
+val rxPrefString = prefs.rxString("some_string")
+```
