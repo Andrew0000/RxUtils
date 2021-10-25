@@ -99,9 +99,9 @@ class PreferencesRepository(context: Context) {
     }
 }
 ```
-Note: clear signal is needed if you want to clear you prefs with `prefs.edit().clear()` function.  
+Note: clearSignal is needed if you want to clear you prefs with `prefs.edit().clear()` function.  
 Because OnSharedPreferenceChangeListener ignores edit().clear() on API < 30 so we need a signal to react on it.  
-If you clena you prefs individually than you can skip clearSignal.  
+If you clean you prefs individually then you can skip clearSignal.  
 Like that:
 ```
 val rxPrefString = prefs.rxString("some_string")
