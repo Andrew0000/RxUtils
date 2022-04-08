@@ -14,7 +14,7 @@ Some functions:
 
 [![](https://jitpack.io/v/Andrew0000/RxUtils.svg)](https://jitpack.io/#Andrew0000/RxUtils)
 
-1. Add `maven { url 'https://jitpack.io' }` to the `allprojects` or `dependencyResolutionManagement` section in top-leve `build.gradle` or `settings.gradle`.  
+1. Add `maven { url 'https://jitpack.io' }` to the `allprojects` or `dependencyResolutionManagement` section in top-level `build.gradle` or `settings.gradle`.  
 For example (`settings.gradle`):
 ```
 dependencyResolutionManagement {
